@@ -1,31 +1,31 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-    fastAPI aws lambda example
+    manageme fastAPI aws lambda 
 Resources:
-    FastapiExampleLambda:
+    ManagemeLambda:
         Type: AWS::Serverless::Function
         Properties:
             Events:
                 ApiEvent:
                     Properties:
                         RestApiId:
-                            Ref: FastapiExampleGateway
+                            Ref: ManagemeGateway
                         Path: /{proxy+}
                         Method: ANY
                     Type: Api
-            FunctionName: fastapi-lambda-example
+            FunctionName: manageme-lambda
             CodeUri: ./
             Handler: example_app.main.handler
             Runtime: python3.7
             Timeout: 300 # timeout of your lambda function
             MemorySize: 128 # memory size of your lambda function
-            Description: fastAPI aws lambda example
+            Description: Manageme fastAPI aws lambda
             # other options, see ->
             # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html#sam-specification-template-anatomy-globals-supported-resources-and-properties
-            Role: !Sub arn:aws:iam::${AWS::AccountId}:role/fastapilambdarole
+            Role: !Sub arn:aws:iam::${AWS::AccountId}:role/manageme_fastapi
 
-    FastapiExampleGateway:
+    ManagemeGateway:
         Type: AWS::Serverless::Api
         Properties:
             StageName: prod

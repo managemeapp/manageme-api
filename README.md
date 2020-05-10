@@ -1,3 +1,5 @@
-# fastapi-aws-lambda-example
+# ManageMe API
 
-for a detailed guide on how to deploy a fastapi application with AWS API Gateway and AWS Lambda check [this](https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda)
+Built with FastAPI on AWS Lambda.
+
+Following this https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda

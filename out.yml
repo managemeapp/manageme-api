@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: "manageme fastAPI aws lambda \n"
+Resources:
+  ManagemeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        ApiEvent:
+          Properties:
+            RestApiId:
+              Ref: ManagemeGateway
+            Path: /{proxy+}
+            Method: ANY
+          Type: Api
+      FunctionName: manageme-lambda
+      CodeUri: s3://manageme-travis-deployment-bucket/e09304cd22d5a9ef7e007358958f15e3
+      Handler: example_app.main.handler
+      Runtime: python3.7
+      Timeout: 300
+      MemorySize: 128
+      Description: Manageme fastAPI aws lambda
+      Role:
+        Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/manageme_fastapi
+  ManagemeGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      OpenApiVersion: 3.0.0
