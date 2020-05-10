@@ -14,10 +14,10 @@ jobs:
         - pytest . -v
     - stage: deploy
       script:
-        - sam validate
-        - sam build --debug
-        - sam package --s3-bucket my-travis-deployment-bucket --output-template-file out.yml --region eu-west-1
-        - sam deploy --template-file out.yml --stack-name example-stack-name --region eu-west-1 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM
+        - sam validate --profile manageme-travis-deployment-user
+        - sam build --debug --profile manageme-travis-deployment-user
+        - sam package --s3-bucket my-travis-deployment-bucket --output-template-file out.yml --region eu-west-1 --profile manageme-travis-deployment-user
+        - sam deploy --template-file out.yml --stack-name example-stack-name --region eu-west-1 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --profile manageme-travis-deployment-user
       skip_cleanup: true
       if: branch = master
 notifications:
@@ -26,5 +26,5 @@ notifications:
 env:
   global:
   - AWS_DEFAULT_REGION=eu-west-1
-  - secure: your-encrypted-aws-access-key-id
-  - secure: your-encrypted-aws-secret-access-key
+  - secure: "zUlTyMJwFCvKDXX2IY/A7vjRojEPFbM7z0dhOUfT6KO93kbRoLqErs4rzG/bE0IegJyHM+inabKykOwO4auswAfxkYvHKcbTJnTii5eL4SvovsYe11XvMlc0UZ/ICW3fXSEM324BuQWrkIkHt4cmANFJkGiH1XgTXVr760bSm3olt9qdH28QCY6DASoyF0U7XQsaEzFzxObEE4djfN896D8ULTjrDcgRW4VWckuQQxBDdBuf6byOumER9PY+LZIEbWxHq18nuDKlUMUXMZCUQkvgIaTgtPaAkx//VQ7wjMvUA5yIj5IjL3ZF6SaHgZY2X38j+6IxmQLoUbtx5RWhajL7oL2g5KjN5qb1wdWcS9qv8lPuh+9ffOK+7FeY2aqffBiobrXPVAkguQ5vF0VmeP2P+WuaSxWGoXYfvgNCjOyT6Nid15ycvJENjMUlgM7ZYJL+3Vr1YQK0Y6x41aFz10OL9wW1Wu1Zjkv3i9NTBgA0w1VR9MDIaNlJjP/qsi/y7f+Wbcny263qYLxfoxcvr5+9oj2NTfRa8kSL8XhPO4Rx2dHMUs6BWk0z/xCuRALRWM92cvUpU4Wv5lg40cUb3ePrz6VIaEoYKOjZNGGsoJaEnVV+K7FaEK2K/fqJtu7X4ge6Wu5LpL3SognxWSvtiDP9FMB4vdTh/CWvD5KHq7g="
+  - secure: "gvT5Da7oxFsuLJ3kOaK+vjYeNr9Et8aewDSP3AcuBKcDXSnRRodTmCt2N55p3WByd9Q6bDxLE+MIfQImIdK1D1Y/dEsATEcnoUFc8u1LsIsijaUMUMG/LHbozX+KCKn9i0D+zEH38cSe+6cux6M6jcIMCieV8znVLTjs+Cz54jLVnn1H2w//SsGEN8xI7u1/QBSCids/wDKdp3D7qo2peypTKKEnwoGidTsoNxy5rUyA33UOi3zdrihiUwUbHw5vYCGuymyIi0NFeWJvoEsKYwyVa2BsZ9cdy59Waft+QhmZjqOD/W1czJ9f/1P8p17BV748Rz45GwhBbCmDy2/FbbVwq0mS1EUbsZp0MF27CbSO2ixrndKRFVmIviVRXw99CLkEFehNO4TxHluVh0u6B2MIW4jdv1+JwYuBinMjiiGSoxgrL+gjULhJvSSqnWgi0UP3qXMZAN6ZYMy2PkOjIPC2+p3GUaET95yjmH/8pLszdAEnuc9c1e6sRJFSkSN3PNkXHXX5sLJmOqAPRWqSXHkCjDOMemmVmJAGzfi4lfra1YttqqqlxJlCHeTPi+faDfZG9kK+QrudVG2ifNHGRfgJLncXtuHcN/jRjgzYAsL67e/0p1Gq5vxJPfmYvR/HDmeyhHzTRdgf3yJqw2HTBNsjA6H4nR/l78aXUTJUgMw="
