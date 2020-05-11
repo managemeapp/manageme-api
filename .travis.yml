@@ -14,10 +14,10 @@ jobs:
         - pytest . -v
     - stage: deploy
       script:
-        - sam validate --profile manageme-travis-deployment-user
-        - sam build --debug --profile manageme-travis-deployment-user
-        - sam package --s3-bucket manageme-travis-deployment-bucket  --output-template-file out.yml --region eu-west-1 --profile manageme-travis-deployment-user
-        - sam deploy --template-file out.yml --stack-name manageme-stack --region eu-west-1 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --profile manageme-travis-deployment-user
+        - sam validate
+        - sam build --debug
+        - sam package --s3-bucket manageme-travis-deployment-bucket  --output-template-file out.yml --region eu-west-1
+        - sam deploy --template-file out.yml --stack-name manageme-stack --region eu-west-1 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM
       skip_cleanup: true
       if: branch = master
 notifications:
