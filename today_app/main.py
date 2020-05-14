@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from .core.config import PROJECT_NAME
 from mangum import Mangum
 
 app = FastAPI(
