@@ -10,7 +10,7 @@ app = FastAPI(
 
 
 @app.get("/today")
-def pong():
+def today():
     """
     Return today's schedule from the user's calendar.
 
