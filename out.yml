@@ -15,7 +15,7 @@ Resources:
           Type: Api
       FunctionName: manageme-lambda
       CodeUri: s3://manageme-travis-deployment-bucket/e09304cd22d5a9ef7e007358958f15e3
-      Handler: example_app.main.handler
+      Handler: today_app.main.handler
       Runtime: python3.7
       Timeout: 300
       MemorySize: 128
